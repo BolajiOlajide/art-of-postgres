@@ -1,0 +1,28 @@
+\c dump
+
+BEGIN;
+
+CREATE TABLE factbook (
+  year    int,
+  date    date,
+  shares  text,
+  trades  text,
+  dollars text
+);
+
+\COPY factbook FROM 'factbook.csv' WITH delimiter E'\t' NULL ''
+
+-- ALTER TABLE factbook
+--   ALTER shares
+--     TYPE bigint
+--   USING REPLACE(shares, ',', '')::bigint,
+
+--   ALTER TABLE trades
+--     TYPE bigint
+--   USING REPLACE(trades, ',', '')::bigint,
+
+--   ALTER TABLE dollars
+--     TYPE bigint
+--   USING SUBSTRING(REPLACE(dollars, ',', '') FROM 2)::numeric;
+
+COMMIT;
